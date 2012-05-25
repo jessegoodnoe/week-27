@@ -7,8 +7,15 @@ class Poster
 
     def perform(options = {})
 
-      log.info "Performing work #{Time.now}"
-      sleep 2
+log.info "options: " + options.inspect
+      sleep 5
+
+      log.info "Posting to twitter #{Time.now}"
+      user = User.find(options["user_id"].to_i)
+      post = Post.find(options["post_id"].to_i)
+      user.twitter.update post.message
+      log.info "Posted to twitter #{Time.now}"
+      # current_user.twitter.update post.message
 
     end
 
